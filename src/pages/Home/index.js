@@ -1,7 +1,8 @@
-import React, { userState } from "react";
+import React, { useState } from "react";
 import { Container, Grid, Button, Typography, Paper, CardContent } from "@material-ui/core";
 import { LocationIcon, HamgurIcon, AddIcon, IdontknowIcon, AlertIcon, RouterIcon } from "../../icons";
 import { makeStyles } from "@material-ui/core/styles";
+import Localidad from '../../componentes'
 
 import styles from './style';
 
@@ -12,94 +13,80 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CenteredGrid() {
+const CenteredGrid = () => {
   const classes = useStyles();
   const fran = styles(); 
 
-  return (
+  const [localidades, setLocalidades] = useState([
+    {
+      id: 1,
+      zone: 'Downtown',
+      street: '12345 River Road',
+      city: 'San Diego, CA 92129',
+      number: '859 - 555 - 1234',
+      alert: 12,
+      router: 4,
+      circle: 156
+    }
+  ]);
+
+  const agregarLocalidad = () => {
+    const nuevaLocalidad = 
+    {
+      id: 1,
+      zone: 'Downtown',
+      street: '12345 River Road',
+      city: 'San Diego, CA 92129',
+      number: '859 - 555 - 1234',
+      alert: 12,
+      router: 4,
+      circle: 156
+    }
+    
+      setLocalidades([
+        nuevaLocalidad,
+        ...localidades
+      ])
+
+  }
+
+  return(
     <Container>
-      <Grid className={classes.root}>
-        <Grid container spacing={3}>
-          <Grid Grid item xs={12} container>
-              <Grid item xs={6} container>
-                    <Grid item xs={1} > <LocationIcon style={{color: '#00bfff'}}/></Grid>
-                    <Grid item xs={11} >  <Typography>Locations</Typography></Grid>
-              </Grid>
-              <Grid  item xs={6} className={fran.floatRight}>
-                  <Button variant="contained" color="primary" className={fran.btnLightBlue}><AddIcon/></Button>
-                  <Button variant="contained" className={fran.btnWhite}>
-                      <HamgurIcon />
-                  </Button>
-              </Grid>
-          </Grid>
-
-          <Grid item xs={6} container className={fran.card} style={{backgroundColor: 'white', padding: '15px 25px'}}>
-            <Grid xs={6} style={{alignSelf: 'center'}}>
-            <ul className={fran.ul}>
-                <li><b>Downtown</b></li>
-                <li>12345 River Road</li>
-                <li>San Diego, CA 92129</li>
-                <li>859 - 555 - 1234</li>
-            </ul>
-            </Grid>
-            <Grid item xs={6} style={{alignSelf: 'center',}}>
-                <ul className={fran.ulAlerts}>
-                    <li className={fran.li}><AlertIcon style={{color: 'red'}}>
-                        </AlertIcon>
-                        <p className={fran.p}>12</p>
-                    </li>
-                    <li className={fran.li}>
-                        <RouterIcon style={{color: 'green'}}/>
-                        <p className={fran.p}>4</p>
-                    </li>
-                    <li className={fran.li} style={{borderRight: '0px'}}>
-                        <IdontknowIcon style={{color: 'blue'}}/>
-                        <p className={fran.p}>156</p>
-                    </li>
-                </ul>
-            </Grid>
-          </Grid>
-
-          <Grid item xs={6}>
-            <Paper className={classes.paper}>xs=6</Paper>
-          </Grid>
-
-        </Grid>
-      </Grid>
-    </Container>
-  );
-}
-
-/*
-
-
-  return (
-    <div className={classes.root}>
+    <Grid className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>xs=12</Paper>
+        <Grid Grid xs={12} container className={fran.header}>
+            <Grid item xs={6} container style={{alignSelf: 'center'}}>
+                  <Grid item xs={1} > <LocationIcon style={{color: '#00bfff'}}/></Grid>
+                  <Grid item xs={11} >  <Typography>Locations</Typography></Grid>
+            </Grid>
+            <Grid  item xs={6} className={fran.floatRight}>
+                <Button 
+                variant="contained" 
+                color="primary" className={fran.btnLightBlue} 
+                onClick={() => agregarLocalidad()}>
+                    <AddIcon/>
+                  </Button>
+                <Button variant="contained" className={fran.btnWhite}>
+                    <HamgurIcon />
+                </Button>
+            </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
+        {localidades.map((localidad) => (
+        <Localidad 
+          zone={localidad.zone} 
+          street={localidad.street} 
+          city={localidad.city} 
+          number={localidad.number} 
+          alert={localidad.alert} 
+          router={localidad.router} 
+          circle={localidad.circle} 
+          />
+        ))}
       </Grid>
-    </div>
-  );
+    </Grid>
+  </Container>
+  )
+
 }
 
-*/
+export default CenteredGrid;
