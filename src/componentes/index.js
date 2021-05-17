@@ -9,7 +9,7 @@ const Localidades = ({zone, street, city, number, alert, router, circle }) => {
     const fran = styles(); 
 
     return (  
-    <Grid item xs={6} container className={fran.card}>
+    <Grid item xs={5} container className={fran.card}>
             <Grid xs={6} style={{alignSelf: 'center'}}>
             <ul className={fran.ul}>
                 <li><b>{zone}</b></li>

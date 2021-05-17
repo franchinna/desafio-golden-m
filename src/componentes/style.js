@@ -7,7 +7,8 @@ export default makeStyles ({
         backgroundColor: 'white', 
         padding: '15px 25px!important',
         boxShadow: ' 0px 0px 5px 0px rgba(143,143,143,1)',
-        borderRadius: '5px'
+        borderRadius: '5px',
+        margin: '10px'
     },
 
     ul: {

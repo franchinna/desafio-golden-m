@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Container, Grid, Button, Typography, Paper, CardContent } from "@material-ui/core";
-import { LocationIcon, HamgurIcon, AddIcon, IdontknowIcon, AlertIcon, RouterIcon } from "../../icons";
+import { Container, Grid, Button, Typography} from "@material-ui/core";
+import { LocationIcon, HamgurIcon, AddIcon } from "../../icons";
 import { makeStyles } from "@material-ui/core/styles";
 import Localidad from '../../componentes'
 
@@ -27,7 +27,18 @@ const CenteredGrid = () => {
       alert: 12,
       router: 4,
       circle: 156
-    }
+    },
+    {
+      id: 2,
+      zone: 'Downtown',
+      street: '12345 River Road',
+      city: 'San Diego, CA 92129',
+      number: '859 - 555 - 1234',
+      alert: 12,
+      router: 4,
+      circle: 156
+    },
+
   ]);
 
   const agregarLocalidad = () => {
@@ -53,7 +64,7 @@ const CenteredGrid = () => {
   return(
     <Container>
     <Grid className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} style={{justifyContent: 'center'}}>
         <Grid Grid xs={12} container className={fran.header}>
             <Grid item xs={6} container style={{alignSelf: 'center'}}>
                   <Grid item xs={1} > <LocationIcon style={{color: '#00bfff'}}/></Grid>
